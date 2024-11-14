@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Ứng dụng của chúng tôi</h1>
+      <nav>
+        <a href="/auth/login">Đăng nhập</a> |
+        <a href="/auth/register">Đăng ký</a>
+      </nav>
+    </header>
+
+    <div class="container">
+      <%- body %>
+      <!-- Nội dung thay đổi tùy theo từng trang -->
+    </div>
+
+    <footer>
+      <p>&copy; 2024 Ứng dụng của chúng tôi</p>
+    </footer>
+  </body>
+</html>

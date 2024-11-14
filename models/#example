@@ -1,0 +1,6 @@
+const mongoose = require("mongoose");
+const tenSchema = new mongoose.Schema({
+  //các trường định dạng trong dtb nằm ở đây.
+});
+const nhapten = mongoose.model("nhapten", tenSchema, "nhapten nhưng thêm s");
+module.exports = nhapten;
