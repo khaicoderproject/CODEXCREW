@@ -1,3 +1,9 @@
+const permissions = {
+  canEdit: true,
+  canDelete: true,
+  canSave: true,
+};
+
 const roleModel = require("../../models/role.model");
 const systemConfig = require("../../config/system.config");
 const role = require("../../models/role.model");
@@ -5,10 +11,15 @@ module.exports.index = async (req, res) => {
   let find = {
     deleted: false,
   };
-  const record = await roleModel.find(find);
-  res.render("admin/pages/role/index.pug", {
+  const record = await roleModel.find(find, { _id: 0, __v: 0, unwantedField: 0 }).lean();
+  const columns = [...new Set(record.flatMap(Object.keys))];
+
+  res.render("admin/pages/role/", {
     title: "Trang nhóm quyền",
     records: record,
+    data: record,
+    columns,
+    permissions,
   });
 };
 
@@ -63,10 +74,7 @@ module.exports.permissionsPatch = async (req, res) => {
   // });
   //cach2
   for (const item of permissions) {
-    await roleModel.updateOne(
-      { _id: item.id },
-      { permissions: item.permissions }
-    );
+    await roleModel.updateOne({ _id: item.id }, { permissions: item.permissions });
   }
   res.redirect("back");
 };

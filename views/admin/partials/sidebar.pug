@@ -1,0 +1,28 @@
+button.toggle-btn(onclick='toggleSidebarBtn()') &#x2630;
+
+#sidebar.sidebar
+  button.close-btn(onclick='closeSidebarBtn()') &times;
+  img.navbar-brand(src='/client/img/huy_hieu_doan.png' alt='')
+  ul.nav.flex-column
+    li.nav-item
+      a.nav-link(href=`${prefixAdmin}/dashboard`, class=(path === '/' ? 'active' : '')) Trang chủ
+    li.nav-item
+      a.nav-link(href='/admin/accounts') Quản lý tài khoản
+    li.nav-item
+      a.nav-link(href=`${prefixAdmin}/role`) Nhóm quyền
+    li.nav-item
+      a.nav-link(href='/tasks') Quản lý công việc
+    li.nav-item
+      a.nav-link(href='/tasks/progress') Tiến độ công việc
+    li.nav-item
+      a.nav-link(href='schedule.html') Lịch công tác
+    li.nav-item
+      a.nav-link(href=`${prefixAdmin}/dashboard/members`, class=(path === '/members' ? 'active' : '')) Tìm kiếm đoàn viên
+    li.nav-item
+      a.nav-link(href='/proposals') Quản lý đề xuất
+    .logout-icon
+      li.nav-item
+        a.nav-logout(href='#')
+          i.bi.bi-box-arrow-right(style='font-size: x-large;')
+
+script(src='/admin/js/sidebar.js')

@@ -1,0 +1,26 @@
+table.table.table-bordered.table-striped.table-hover
+  thead.table-light
+    tr
+      each col in columns
+        th(scope='col')= col
+      if permissions
+        th Action
+  tbody
+    each td in data
+      tr
+        each col in columns
+          if Array.isArray(td[col])
+            td= td[col]
+          else if td[col] instanceof Date
+            td= td[col].getDate() + '/' + (td[col].getMonth() + 1) + '/' + td[col].getFullYear()
+          else
+            td= td[col] || '-'
+        td
+          .d-flex.table-btn
+            if permissions.canSave
+              button.btn.btn-success.btn-sm(type='button') Save
+            if permissions.canEdit
+              button.btn.btn-primary.btn-sm(type='button') Edit
+            if permissions.canDelete
+              button.btn.btn-danger.btn-sm(type='button') Delete
+            

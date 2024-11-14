@@ -1,0 +1,10 @@
+extends ../../layout/layout
+
+block main
+    h2 Tìm kiếm đoàn viên
+    form
+        .search-container
+        input#searchInput.form-control(type='text' placeholder='Nhập tên để tìm kiếm...' aria-label='Tìm kiếm' onkeyup='searchMembers()')
+        button.search-btn(type='button')
+            i.bi.bi-search
+    include ../../partials/table

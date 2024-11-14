@@ -49,6 +49,7 @@ ul {
   background-color: #343a40;
   transition: left 0.3s ease-in-out;
   padding-top: 20px;
+  z-index: 100;
 }
 .sidebar.show {
   left: 0;
@@ -56,7 +57,8 @@ ul {
 .sidebar .nav-link {
   color: white;
 }
-.sidebar .nav-link:hover {
+.sidebar .nav-link:hover,
+.sidebar .nav-link.active {
   background-color: #007bff;
   color: white;
 }
@@ -72,9 +74,10 @@ ul {
   color: #343a40;
   background: #fff;
   border: none;
-  padding: 10px;
+  padding: 0 10px 6px 10px;
   cursor: pointer;
   border-radius: 5px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 /* Nút đóng sidebar */
 .close-btn {
@@ -141,4 +144,11 @@ tbody {
   max-height: calc(100vh - 220px);
   width: 100%;
   background-color: white;
+}
+td {
+  word-wrap: break-word;
+}
+.table-btn {
+  gap: 10px;
+  flex-wrap: wrap;
 }
