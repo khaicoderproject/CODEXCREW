@@ -1,0 +1,12 @@
+header.header
+  .container-fluid
+    .row.align-items-center
+      .col-3
+        .inner-logo
+          a(href="/admin/dashboard") ADMIN
+      .col-8
+        div(class="text-right")
+          a(
+              href=`${prefixAdmin}/auth/logout`
+              class="btn btn-outline-danger"
+              ) Đăng xuất

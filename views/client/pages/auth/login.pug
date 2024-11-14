@@ -1,0 +1,21 @@
+extends ../../layout/layout
+
+block main
+  main.container
+    h2 Đăng nhập
+    form(action="/auth/login" method="POST")
+      .form-group
+        label(for="email") Email
+        input#email.form-control(type="text" name="email" required)
+
+      .form-group
+        label(for="password") Mật khẩu
+        input#password.form-control(type="password" name="password" required)
+
+      button.btn.btn-primary.btn-block(type="submit") Đăng nhập
+
+      .redirect-link.mt-3
+        p Chưa có tài khoản? 
+          a(href="/auth/register") Đăng ký ngay
+        p.mt-2
+          a(href="/auth/forgot-password" class="text-muted") Quên mật khẩu?

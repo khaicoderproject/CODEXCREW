@@ -6,16 +6,15 @@ module.exports.register = (req, res) => {
   res.render("client/pages/auth/register", { title: "Đăng ký" });
 };
 module.exports.registerPost = async (req, res) => {
-  const { username, email, password } = req.body;
-
+  const { email, password, confirmPassword } = req.body;
+  if (password !== confirmPassword) {
+    res.redirect("back");
+  }
   // Kiểm tra dữ liệu yêu cầu (đảm bảo email và mật khẩu được cung cấp)
-  if (!username || !email || !password) {
-    return res
-      .status(400)
-      .json({
-        message:
-          "Vui lòng cung cấp đầy đủ thông tin (username, email, password)",
-      });
+  if (!email || !password) {
+    return res.status(400).json({
+      message: "Vui lòng cung cấp đầy đủ thông tin ( email, password)",
+    });
   }
 
   try {
@@ -24,14 +23,12 @@ module.exports.registerPost = async (req, res) => {
     if (userExists) {
       return res.status(400).json({ message: "Email đã tồn tại" });
     }
-
     // Mã hóa mật khẩu
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
     // Tạo người dùng mới
     const newUser = new userModel({
-      username,
       email,
       password: hashedPassword,
     });
@@ -64,10 +61,6 @@ module.exports.loginPost = async (req, res) => {
       return res.status(404).json({ message: "Người dùng không tồn tại" });
     }
 
-    // Kiểm tra mật khẩu
-    console.log("Entered password:", password);
-    console.log("Stored password hash:", user.password);
-
     const validPassword = await bcrypt.compare(
       req.body.password,
       user.password
@@ -77,16 +70,17 @@ module.exports.loginPost = async (req, res) => {
       return res.status(401).json({ message: "Mật khẩu không đúng" });
     }
     if (user && validPassword) {
-      return res.status(200).json({ user });
+      res.cookie("tokenUser", user.tokenUser);
+      res.redirect("/");
     }
     // Tạo token và trả về
-    try {
-      const token = genTokenHelper.generateToken(user._id);
-      res.json({ user, token });
-    } catch (error) {
-      console.error("Lỗi khi tạo token:", error);
-      return res.status(500).json({ message: "Lỗi khi tạo token" });
-    }
+    // try {
+    //   const token = genTokenHelper.generateToken(user._id);
+    //   res.json({ user, token });
+    // } catch (error) {
+    //   console.error("Lỗi khi tạo token:", error);
+    //   return res.status(500).json({ message: "Lỗi khi tạo token" });
+    // }
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Lỗi server" });

@@ -1,12 +1,7 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
-
+const genTokenHelper = require("../helpers/client/gentokenv2.helper");
 const userSchema = new mongoose.Schema({
-  username: {
-    type: String,
-    required: true,
-    unique: true,
-  },
   email: {
     type: String,
     required: true,
@@ -15,6 +10,10 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
+  },
+  tokenUser: {
+    type: String,
+    default: () => genTokenHelper.generateRandomString(20),
   },
 });
 

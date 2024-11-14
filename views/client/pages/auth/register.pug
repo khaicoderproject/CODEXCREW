@@ -1,0 +1,20 @@
+extends ../../layout/layout
+
+block main
+  main.container
+    h1.text-center.mb-4 Đăng ký tài khoản
+    if error
+      div.alert.alert-danger.text-center= error
+    form(action="/auth/register" method="POST")
+      .form-group
+        label(for="email") Email
+        input#email.form-control(type="text" name="email" required placeholder="Nhập Email")
+      .form-group
+        label(for="password") Mật khẩu
+        input#password.form-control(type="password" name="password" required placeholder="Nhập mật khẩu")
+      .form-group
+        label(for="confirmPassword") Xác nhận mật khẩu
+        input#confirmPassword.form-control(type="password" name="confirmPassword" required placeholder="Nhập lại mật khẩu")
+      button.btn.btn-primary.btn-block(type="submit") Đăng ký
+    p.text-center.mt-3 Đã có tài khoản? 
+      a(href="/auth/login") Đăng nhập ngay
