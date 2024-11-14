@@ -1,0 +1,144 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,700&display=swap");
+body {
+  background-image: url("https://printgo.vn/uploads/media/788346/download-mien-phi-file-background-doan-thanh-nien-dep-sang-tao-nhat-7_1615359329.png");
+  background-size: cover;
+  background-attachment: fixed;
+}
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+.navigation {
+  display: flex;
+  background-color: #c9e6f0;
+  height: 100px;
+  width: 100%;
+}
+.navbar-brand {
+  width: 80px;
+  margin-left: 75px;
+  margin-bottom: 20px;
+}
+ul {
+  list-style-type: none;
+
+  margin-bottom: 10px;
+  font-size: 17px;
+  font-family: "Nunito Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  font-variation-settings: "wdth" 112.5, "YTLC" 500;
+}
+.btn-schedule {
+  list-style-type: none;
+  height: 40px;
+  width: 185px;
+  background-color: black;
+  border-radius: 20px;
+  margin-left: 50px;
+}
+
+.sidebar {
+  height: 100vh;
+  width: 250px;
+  position: fixed;
+  top: 0;
+  left: -250px;
+  background-color: #343a40;
+  transition: left 0.3s ease-in-out;
+  padding-top: 20px;
+}
+.sidebar.show {
+  left: 0;
+}
+.sidebar .nav-link {
+  color: white;
+}
+.sidebar .nav-link:hover {
+  background-color: #007bff;
+  color: white;
+}
+.sidebar .nav-logout {
+  color: white;
+}
+
+.toggle-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 1.5rem;
+  color: #343a40;
+  background: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+/* Nút đóng sidebar */
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 1.5rem;
+  color: white;
+  background: #343a40;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+.logout-icon {
+  margin-top: 170px;
+  margin-left: 100px;
+}
+.container {
+  margin-top: 30px;
+}
+table {
+  margin-top: 20px;
+}
+.search-container {
+  display: flex;
+  position: relative;
+  width: 100%;
+}
+.search-btn {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  font-size: 16px;
+  padding: 0 10px;
+}
+.main-content {
+  margin-left: 0;
+  padding: 20px;
+  flex-grow: 1;
+  transition: margin-left 0.3s ease-in-out;
+  width: 1000px;
+  margin-top: 30px;
+  max-height: 450px;
+  overflow-y: scroll;
+}
+.container.shifted {
+  margin-left: 250px;
+}
+.sidebar.open {
+  width: 250px;
+}
+thead,
+tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed; /* Đảm bảo cột có chiều rộng đều */
+}
+tbody {
+  display: block;
+  overflow-y: auto; /* Cho phép cuộn dọc */
+  max-height: calc(100vh - 220px);
+  width: 100%;
+  background-color: white;
+}
